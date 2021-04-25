@@ -12,6 +12,7 @@ namespace FoodHub.Data.Models
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string Name { get; set; }
 
         [Display(Name = "Type of Food")]

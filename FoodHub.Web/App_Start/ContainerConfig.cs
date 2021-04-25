@@ -18,12 +18,18 @@ namespace FoodHub.Web
             var builder = new ContainerBuilder();
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly); //ask for Assembly property of MvcApplication (from Global.asax.cs) type
-            builder.RegisterApiControllers(typeof(MvcApplication).Assembly); 
+            builder.RegisterApiControllers(typeof(MvcApplication).Assembly);
 
             //please register this type, InMemoryRestaurantData => autoFac knows this type now and use that type when someone needs something that implements IRestaurantData
-            builder.RegisterType<InMemoryRestaurantData>()
+            //builder.RegisterType<InMemoryRestaurantData>()
+            //    .As<IRestaurantData>()
+            //    .SingleInstance(); //singleton
+
+            builder.RegisterType<SqlRestaurantData>()
                 .As<IRestaurantData>()
-                .SingleInstance(); //singleton
+                .InstancePerRequest();
+            builder.RegisterType<FoodHubDbContext>().InstancePerRequest();
+              
 
             var container = builder.Build(); //construct autofac container
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
