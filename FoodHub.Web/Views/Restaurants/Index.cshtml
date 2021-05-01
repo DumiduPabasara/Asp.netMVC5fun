@@ -2,32 +2,67 @@
 
 @{
     ViewBag.Title = "Index";
+    ViewBag.Msg = "💝";
 }
 
-<h2>Index</h2>
+<div class="row list-inline">
+    <ul class="list-inline">
+        <li><h2>Eat Delicious Foods from Our Restaurants 🙈🥧 </h2> </li>
+        <li><button class="btn btn-group-vertical btn-info" id="styleChange" type="button">Change View Style</button></li>
+    </ul>
+</div>
+
+<p>There are @Model.Count() Restaurants</p>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Restaurant", "Create", "", new { @class = "btn btn-success" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+<div id="bootstrapView" class="bootstrapView">
+    @foreach (var item in Model)
+    {
+        @Html.Partial("_RestaurantSummary", item)
+    }
 
-</table>
+</div>
+
+<div id="tableView" class="tableView">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            @:This is just static text, i need to send client output
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#bootstrapView").hide();
+
+        $("#styleChange").click(function () {
+            $("#tableView").toggle();
+            $("#bootstrapView").toggle();
+        });
+    });
+          
+</script>

@@ -96,6 +96,7 @@ namespace FoodHub.Web.Controllers
             if(ModelState.IsValid)
             {
                 db.Update(restaurant);
+                TempData["Message"] = "You have saved the restaurant !";
                 return RedirectToAction("Details", new { id = restaurant.Id });
             }
 

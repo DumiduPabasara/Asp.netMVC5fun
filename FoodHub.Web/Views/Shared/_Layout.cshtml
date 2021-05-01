@@ -4,19 +4,26 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - FoodHub</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        a {
+            color: chartreuse;
+        }
+ 
+
+        a:hover {
+            color: coral;
+        }
+
+        input {
+            background-color: darkslategray;
+        }
+    </style>
 </head>
 
-<style>
-    a {
-       color: chartreuse;
-    };
 
-     input {
-         background-color: darkslategray;
-     }
-</style>
 
 <body style="background-color: darkcyan; color: cornsilk">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -42,10 +49,15 @@
         </div>
     </div>
     <div class="container body-content">
+        @if(TempData["Message"] != null)
+            {
+                <div class="alert alert-info">@TempData["Message"]</div> 
+            }
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - UniCorn Solutions - Sri Lanka 🦄</p>
+            <p>&copy; @DateTime.Now.Year - UniCorn Solutions - Sri Lanka 🦄 @(ViewBag.Msg != "" ? ViewBag.Msg : "")</p>
+            @RenderSection("footer", required: false)
         </footer>
     </div>
 

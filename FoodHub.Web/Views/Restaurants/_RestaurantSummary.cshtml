@@ -1,0 +1,14 @@
+﻿@model FoodHub.Data.Models.Restaurant
+
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color: mediumseagreen; color: darkslategrey; font-family: 'GeoSlab703 Md BT'; font-size: x-large; font-style: oblique";>
+        <h3 class="panel-title">@Model.Name</h3>
+    </div>
+    <div class="panel-body" style="background-color: cornflowerblue; color: darkslategrey">
+        <div class="btn" style="background-color: darkslategray">@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</div> |
+        <div class="btn btn-primary" style="background-color: darkslategray">@Html.ActionLink("Details", "Details", new { id = Model.Id })</div> |
+            <div class="btn" style="background-color: darkslategray">
+                @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
+            </div>
+    </div>
+</div>

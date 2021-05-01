@@ -1,7 +1,27 @@
-﻿@{
+﻿@model IEnumerable<FoodHub.Data.Models.Restaurant>
+
+@{
     ViewBag.Title = "About";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
+@*Razor will recognize email address*@
+Connect us with Email: foodhub@gmail.com
+<br>
+@*Razor still recognize this as email*@
+Don't Connect us with this Email: foodhub@gmail.com@Model.Count()
+<br />
+@*enclose with () will do the job*@
+You can try Connect us with Email: foodhub@gmail.com@(Model.Count())
+<br />
+@*Escape @ sign*@
+Connect us with Twitter: @@foodhub
+
+@Html.Raw("<p>Please Don't use Cross-site Scripting attack 🙏</p><br />") @*has to careful with Cross-site scripting attack*@
+
 <p>Use this area to provide additional information.</p>
+
+@section footer {
+    <div>This is custom footer</div>
+}

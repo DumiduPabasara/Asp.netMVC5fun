@@ -37,7 +37,8 @@ namespace FoodHub.Web.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            var model = db.GetAll();
+            return View(model);
         }
 
         public ActionResult Contact()
